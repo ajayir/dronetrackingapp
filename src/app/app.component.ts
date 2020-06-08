@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dronetrackingapp';
+  public title = 'dronetrackingapp';
+  public isDroneRegistered = false;
+  public isSignedIn = false;
 }

@@ -1,0 +1,52 @@
+<div class="container signInFormContainer">
+    <form class="signInForm" *ngIf="!formIsSubmitted" #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="fieldContainer form-group">
+            <div class="">
+                <label>Drone User First Name:</label>
+                <input required type="text" #name="ngModel" [class.is-invalid]="name.touched && name.invalid" class="form-control standardFieldWidth" name="droneUserFirstName" [(ngModel)]="droneModel.droneUserFirstName">
+                <!--<small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is Required</small>-->
+                <div *ngIf="name.errors && (name.invalid && name.touched)">
+                    <small class="text-danger">Name is Required</small>
+                </div>
+            </div><br>
+            <div>
+                <label>Drone User Last Name:</label>
+                <input required type="text" class="form-control standardFieldWidth" name="droneUserLastName" [(ngModel)]="droneModel.droneUserLastName"><br>
+            </div>
+            <div>
+                <label>Drone Alias:</label>
+                <input type="text" class="form-control standardFieldWidth" name="droneAlias" [(ngModel)]="droneModel.droneAlias"><br>
+            </div>
+            <div>
+                <label>Drone FAA #:</label>
+                <input type="text" class="form-control standardFieldWidth" name="droneFAANumber" [(ngModel)]="droneModel.droneFAANumber"><br>
+            </div>
+            <div>
+                <label>Tag License #:</label>
+                <input type="text" class="form-control standardFieldWidth" name="tagLicense" [(ngModel)]="droneModel.tagLicense"><br>
+            </div>
+            <div>
+                <label>License State:</label>
+                <select (blur)="validateStateSelection(state.value)" (change)="validateStateSelection(state.value)" required #state="ngModel" [class.is-invalid]="stateSelectHasError && state.touched" class="custom-select" name="licenseState" [(ngModel)]="droneModel.licenseState">
+                    <option value="default">Please choose state</option>
+                    <option *ngFor="let state of licenseStates">
+                        {{ state.name }}
+                    </option>
+                </select>
+                <small class="text-danger" [class.d-none]="!stateSelectHasError || state.untouched">Please choose a state</small>
+            </div>
+            <br>
+            <div>
+                <button [disabled]="userForm.form.invalid || stateSelectHasError" type="submit" class="btn btn-info">REGISTER</button>
+            </div>
+        </div>
+    </form>
+    <div class="container" *ngIf="formIsSubmitted">
+        <div class="jumboInfoMessageBanner jumbotron">
+            <h1>Your Drone is now registered.<br>Fly Away</h1>
+        </div>
+        <div>
+            <button type="button" class="btn btn-info jumboButton" routerLink="/">View Drones</button>
+        </div>
+    </div>
+</div>
