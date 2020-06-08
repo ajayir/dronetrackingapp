@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+div.signInFormContainer {
+    margin-top: 50px;
+}
+
+fieldset {
+    background-color: #eeeeee;
+    padding: 10px;
+    border: solid #343a40;
+    width: 800px;
+}
+
+legend {
+    background-color: #343a40;
+    color: white;
+    padding: 5px 10px;
+}
+
+.standardFieldWidth {
+    width: 450px;
+}
+
+.fieldContainer {
+    width: 450px;
+}
+
+.alignRight {
+    text-align: right;
+}
+
+.jumboButton {
+    width: percentage($number: 0.25);
+    height: 50px;
+    font-size: 18px;
+}
+
+.jumboInfoMessageBanner {
+    margin-top: percentage($number: 0.25);
+    text-align: center;
+}
+
+.jumboInfoMessageBanner h1 {
+    font-size: percentage($number: 4);
+}

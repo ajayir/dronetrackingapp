@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "dronetrackingapp"
+    }
+  },
+  "defaultProject": "dronetrackingapp",
+  "cli": {
+    "analytics": false
+  }
 }
