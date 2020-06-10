@@ -43,7 +43,6 @@ export class RegisterdronesComponent implements OnInit {
         data => {
           console.log('Success!', data);
           me.formIsSubmitted = true;
-          me.appComp.isDroneRegistered = me.formIsSubmitted;
         },
         error => console.log('Error!', error)
       );

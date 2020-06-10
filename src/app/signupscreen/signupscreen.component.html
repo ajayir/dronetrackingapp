@@ -1,19 +1,19 @@
 <div class="container signInFormContainer">
-    <form class="signInForm" action="">
+    <form class="signInForm" #registerForm="ngForm" novalidate (ngSubmit)="onSubmit()">
         <fieldset>
             <legend>SIGN UP</legend>
             <div class=fieldContainer>
                 <div>
                     <label>Create Username:</label>
-                    <input type="text" class="form-control standardFieldWidth"><br>
+                    <input name="username" [(ngModel)]="userModel.username" type="text" class="form-control standardFieldWidth" required><br>
                 </div>
                 <div>
                     <label>Create Password:</label>
-                    <input type="text" class="form-control standardFieldWidth"><br>
+                    <input name="password" [(ngModel)]="userModel.password" type="password" class="form-control standardFieldWidth" required><br>
                 </div>
                 <br><br>
                 <div class="alignRight">
-                    <button type="button" class="btn btn-info">CONTINUE</button>
+                    <button type="submit" class="btn btn-info">CONTINUE</button>
                 </div>
             </div>
         </fieldset>

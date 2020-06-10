@@ -6,7 +6,7 @@
     <div class="navbar-collapse collapse"  style="margin-top: 35px;">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item"><a class="nav-link h4 text-white" routerLink="/home" routerLinkActive="active">Home</a></li>
-            <li class="nav-item" *ngIf="isSignedIn"><a class="nav-link h4 text-white" routerLink="/registerdrones" routerLinkActive="active">Register Drones</a></li>
+            <li class="nav-item" *ngIf="isSignedIn == true"><a class="nav-link h4 text-white" routerLink="/registerdrones" routerLinkActive="active">Register Drones</a></li>
             <li class="nav-item"><a class="nav-link h4 text-white" routerLink="/learningcenter" routerLinkActive="active">Learning Center</a></li>
             <li class="nav-item"><a class="nav-link h4 text-white" routerLink="/help" routerLinkActive="active">Help</a></li>
         </ul>

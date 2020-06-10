@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
 import { Observable, from, of } from 'rxjs';
+import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -10,15 +12,26 @@ import { Observable, from, of } from 'rxjs';
 })
 export class SigninscreenComponent implements OnInit {
 
-  constructor(private apiService: ApiserviceService) { }
+  constructor(
+    private apiService: ApiserviceService, 
+    private router: Router, 
+    private appComponent: AppComponent) 
+    { 
+      var me = this; 
+      me.signIntoApp();
+    }
 
   ngOnInit(): void {
-
+    var me = this;
   }
 
   signIntoApp() {
-    var me = this;
-    me.apiService.getData('');
-  }
+    var me = this,
+      login = me.apiService.signUserIn().login; 
 
+      if (login) {
+        me.appComponent.isSignedIn = true;
+        me.router.navigate(['/home']);
+      }
+  }
 }
