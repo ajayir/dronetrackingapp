@@ -1,15 +1,24 @@
-<div class="container signInFormContainer">
-    <form class="signInForm" action="">
+<div class="videoDiv">
+    <video autoplay="true" loop="true" poster="/app/assets/drone2.jpg">
+        <!-- <source src="./assets/videos/WorkingSite.mp4" type="video/mp4">
+        <source src="./assets/WorkingSite.m4v" type="video/m4v">
+        <source src="./assets/WorkingSite.ogg" type="video/ogg"> -->
+        <source src="./assets/videos/WorkingSite.webm" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<div class="container formContainer">
+    <form class="signInForm" #loginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
         <fieldset>
             <legend>SIGN IN</legend>
             <div class=fieldContainer>
                 <div>
                     <label>Username:</label>
-                    <input type="text" class="form-control standardFieldWidth"><br>
+                    <input type="text" required name="username" [(ngModel)]="loginModel.username" class="form-control standardFieldWidth"><br>
                 </div>
                 <div>
                     <label>Password:</label>
-                    <input type="text" class="form-control standardFieldWidth"><br>
+                    <input type="password" required name="password" [(ngModel)]="loginModel.password" class="form-control standardFieldWidth"><br>
                 </div>
                 <div class="alignRight">
                     <a href="">Forgot My Password</a>
@@ -18,7 +27,7 @@
                 <div class="alignRight">
                     <button type="button" class="btn btn-info" routerLink="/signupscreen">SIGN UP</button>
                     &nbsp;&nbsp;
-                    <button type="button" class="btn btn-info">SIGN IN</button>
+                    <button type="submit" class="btn btn-info">SIGN IN</button>
                 </div>
             </div>
         </fieldset>

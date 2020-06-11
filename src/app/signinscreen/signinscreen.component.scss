@@ -1,0 +1,11 @@
+div.videoDiv {
+    position: absolute; 
+    z-index: -2;
+    height: auto;
+}
+
+.videoDiv video {
+    width: 100%;
+    height: auto;
+}
+
