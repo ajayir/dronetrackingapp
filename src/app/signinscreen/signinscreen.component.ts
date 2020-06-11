@@ -3,6 +3,8 @@ import { ApiserviceService } from '../apiservice.service';
 import { Observable, from, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { Login } from '../models/login';
+import { Globalappconstants } from '../globalappconstants';
 
 
 @Component({
@@ -11,27 +13,30 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./signinscreen.component.scss']
 })
 export class SigninscreenComponent implements OnInit {
+ 
+  public loginModel = new Login(null, null);
 
   constructor(
     private apiService: ApiserviceService, 
     private router: Router, 
     private appComponent: AppComponent) 
-    { 
-      var me = this; 
-      me.signIntoApp();
-    }
+    { }
 
   ngOnInit(): void {
-    var me = this;
   }
 
-  signIntoApp() {
+  onSubmit() {
     var me = this,
-      login = me.apiService.signUserIn().login; 
+        url = Globalappconstants.API_ENDPOINT + 'login'; 
 
-      if (login) {
-        me.appComponent.isSignedIn = true;
-        me.router.navigate(['/home']);
-      }
+    me.apiService.signUserIn(url, this.loginModel)
+      .subscribe(
+        data => {
+          if (data.data) {
+            me.appComponent.isSignedIn = true;
+            me.router.navigate(['/home']);
+          }
+        }
+      );
   }
 }

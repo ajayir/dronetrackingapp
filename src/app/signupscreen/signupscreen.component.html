@@ -1,19 +1,25 @@
-<div class="container signInFormContainer">
+<div class="container formContainer">
     <form class="signInForm" #registerForm="ngForm" novalidate (ngSubmit)="onSubmit()">
         <fieldset>
             <legend>SIGN UP</legend>
             <div class=fieldContainer>
-                <div>
-                    <label>Create Username:</label>
-                    <input name="username" [(ngModel)]="userModel.username" type="text" class="form-control standardFieldWidth" required><br>
+                <div *ngIf="!isSignUpSuccesful">
+                    <div>
+                        <label>Create Username:</label>
+                        <input name="username" [(ngModel)]="userModel.username" type="text" class="form-control standardFieldWidth" required><br>
+                    </div>
+                    <div>
+                        <label>Create Password:</label>
+                        <input name="password" [(ngModel)]="userModel.password" type="password" class="form-control standardFieldWidth" required><br>
+                    </div>
                 </div>
-                <div>
-                    <label>Create Password:</label>
-                    <input name="password" [(ngModel)]="userModel.password" type="password" class="form-control standardFieldWidth" required><br>
-                </div>
+                <b class="text-success" *ngIf="isSignUpSuccesful">Signup was successful.</b>
                 <br><br>
-                <div class="alignRight">
+                <div class="alignRight" *ngIf="!isSignUpSuccesful">
                     <button type="submit" class="btn btn-info">CONTINUE</button>
+                </div>
+                <div class="alignRight" *ngIf="isSignUpSuccesful">
+                    <button type="button" routerLink="/signinscreen" class="btn btn-info">SIGN IN</button>
                 </div>
             </div>
         </fieldset>

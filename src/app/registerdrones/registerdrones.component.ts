@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiserviceService } from '../apiservice.service';
-import { Drone } from '../drone';
+import { Drone } from '../models/drone';
 import { Observable, from, of } from 'rxjs';
 import { AppComponent } from '../app.component';
+import { Globalappconstants } from '../globalappconstants';
 
 @Component({
   selector: 'app-registerdrones',
@@ -37,8 +38,9 @@ export class RegisterdronesComponent implements OnInit {
   }
 
   onSubmit() {
-    var me = this;
-    me.apiService.registerDrone('http://localhost:3000/registerDrone', this.droneModel).
+    var me = this,
+        url = Globalappconstants.API_ENDPOINT + 'registerDrone';
+    me.apiService.registerDrone(url, this.droneModel).
       subscribe(
         data => {
           console.log('Success!', data);

@@ -1,13 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-div.signInFormContainer {
-    margin-top: 50px;
+div.formContainer {
+    z-index: -1;
+    margin-top: 10%;
+    margin-left: 30%;
+    width: 40%;
+    height: auto;
 }
 
 fieldset {
     background-color: #eeeeee;
-    padding: 10px;
+    padding: 20px;
     border: solid #343a40;
-    width: 800px;
 }
 
 legend {
