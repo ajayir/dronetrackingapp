@@ -8,7 +8,7 @@
     </video>
 </div>
 <div class="container formContainer">
-    <form class="signInForm" #loginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+    <form *ngIf="!isResetPassword" class="signInForm" #loginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
         <fieldset>
             <legend>SIGN IN</legend>
             <div class=fieldContainer>
@@ -21,7 +21,7 @@
                     <input type="password" required name="password" [(ngModel)]="loginModel.password" class="form-control standardFieldWidth"><br>
                 </div>
                 <div class="alignRight">
-                    <a href="">Forgot My Password</a>
+                    <a href="javascript:void(0)" (click)="isResetPassword=true">Forgot My Password</a>
                 </div>
                 <br><br>
                 <div class="alignRight">
@@ -32,4 +32,30 @@
             </div>
         </fieldset>
     </form>
+
+    <form class="passwordResetForm" *ngIf="isResetPassword" #passwordResetForm="ngForm" novalidate (ngSubmit)="onResetPassword()">
+        <fieldset>
+            <legend>RESET YOUR PASSWORD</legend>
+            <div class=fieldContainer>
+                <div>
+                    <label>Enter Current Username:</label>
+                    <input type="text" required name="username" [(ngModel)]="resetPasswordModel.username" class="form-control standardFieldWidth"><br>
+                </div>
+                <div>
+                    <label>Enter Secret Key:</label>
+                    <input type="text" required name="secretKey" [(ngModel)]="resetPasswordModel.secretKey" class="form-control standardFieldWidth"><br>
+                    <small class="text-danger" *ngIf="!isSecretKeyFound">That secret key does not exist for your username.</small>
+                </div>
+                <div>
+                    <label>Enter New Password:</label>
+                    <input type="password" required name="password" [(ngModel)]="resetPasswordModel.password" class="form-control standardFieldWidth"><br>
+                </div>
+                <br><br>
+                <div class="alignRight">
+                    <button type="submit" class="btn btn-info">CONTINUE</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
 </div>

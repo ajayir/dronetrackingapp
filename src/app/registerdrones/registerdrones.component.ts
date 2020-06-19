@@ -4,6 +4,8 @@ import { Drone } from '../models/drone';
 import { Observable, from, of } from 'rxjs';
 import { AppComponent } from '../app.component';
 import { Globalappconstants } from '../globalappconstants';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registerdrones',
@@ -17,7 +19,11 @@ export class RegisterdronesComponent implements OnInit {
   public stateSelectHasError = true;
   public formIsSubmitted = false;
 
-  constructor(private apiService: ApiserviceService, private appComp: AppComponent) { }
+  constructor(
+    private apiService: ApiserviceService, 
+    private appComp: AppComponent,
+    private _router: Router
+    ) { }
 
   ngOnInit(): void {
     var me = this;
@@ -46,7 +52,13 @@ export class RegisterdronesComponent implements OnInit {
           console.log('Success!', data);
           me.formIsSubmitted = true;
         },
-        error => console.log('Error!', error)
+        error => {
+          if (error instanceof HttpErrorResponse) {
+            if (error.status === 401) {
+              me._router.navigate(['/signinscreen']);
+            }
+          }
+        }
       );
   }
 }
