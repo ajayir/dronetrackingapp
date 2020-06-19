@@ -1,0 +1,23 @@
+.viewDronesContainer {
+    min-height: 100px;
+    max-height: 60%;
+    height: 100%;
+    position: relative;
+    margin-top: 10%;
+    overflow: auto;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1500px;
+        height: 74vh;
+    }
+}
+
+.trackDroneButton {
+    font-size: 10px;
+}
+
+.trackDronesButton {
+    font-size: 20px;
+}

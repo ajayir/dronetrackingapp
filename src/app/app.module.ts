@@ -9,9 +9,12 @@ import { RegisterdronesComponent } from './registerdrones/registerdrones.compone
 import { LearningcenterComponent } from './learningcenter/learningcenter.component';
 import { HelpComponent } from './help/help.component';
 import { SignupscreenComponent } from './signupscreen/signupscreen.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ApiserviceService } from './apiservice.service';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { ViewdronesComponent } from './viewdrones/viewdrones.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { FormsModule } from '@angular/forms';
     RegisterdronesComponent,
     LearningcenterComponent,
     HelpComponent,
-    SignupscreenComponent
+    SignupscreenComponent,
+    ViewdronesComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,13 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ApiserviceService],
+  providers: [ApiserviceService, AuthGuard, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

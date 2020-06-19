@@ -2,13 +2,18 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand droneLogo" href="/"><img src="../assets/images/DroneZone_Logo4.png" alt="DroneZone Logo"></a>
-    <div class="navbar-collapse collapse"  style="margin-top: 35px;">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <a class="navbar-brand droneLogo" href="/home"><img src="../assets/images/DroneZone_Logo4.png" alt="DroneZone Logo"></a>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"  style="margin-top: 35px;">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link h4 text-white" routerLink="/home" routerLinkActive="active">Home</a></li>
-            <li class="nav-item" *ngIf="isSignedIn == true"><a class="nav-link h4 text-white" routerLink="/registerdrones" routerLinkActive="active">Register Drones</a></li>
+            <li class="nav-item" *ngIf="apiService.loggedIn()"><a class="nav-link h4 text-white" routerLink="/registerdrones" routerLinkActive="active">Register Drones</a></li>
             <li class="nav-item"><a class="nav-link h4 text-white" routerLink="/learningcenter" routerLinkActive="active">Learning Center</a></li>
             <li class="nav-item"><a class="nav-link h4 text-white" routerLink="/help" routerLinkActive="active">Help</a></li>
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse3" style="margin-top: 1.5%">
+        <ul *ngIf="apiService.loggedIn()" class="navbar-nav ml-auto">
+            <a class="nav-link h4 text-white" style="cursor: pointer;" (click)="apiService.signUserOut()"><span class="fa fa-sign-out"></span>Logout</a>
         </ul>
     </div>
 </nav>

@@ -8,6 +8,7 @@ const https = require('https');
 const app = express();
 const PORT = process.env.PORT || 8001;
 const mysql = require('mysql');
+const jwt = require('jsonwebtoken'); //express session
 const options = {
     key: fs.readFileSync('./localhost.key'),
     cert: fs.readFileSync('./localhost.cert'),
@@ -30,13 +31,32 @@ connection.connect(function(error){
     }
 });
 exports.connection = connection; //Export connection for use in routes
+exports.jwt = jwt;
 
 app.use(bodyParser.json());
 app.use(cors());
 
+function verifyToken(req, res, next) {
+    if(!req.headers.authorization) {
+        return res.status(401).send('Unauthorized request');
+    }
+    let token = req.headers.authorization.split(' ')[1];
+    if(token === null) {
+        return res.status(401).send('Unauthorized request');
+    }
+    let payload = jwt.verify(token, 'secretKey');
+    if(!payload) {
+        return res.status(401).send('Unauthorized request');
+    }
+    req.userId = payload.subject;
+    next();
+}
+
 app.post('/register', login.register);
 app.post('/login', login.login);
-app.post('/registerDrone', drones.registerDrone);
+app.post('/resetpassword', login.resetPassword);
+app.post('/registerDrone', verifyToken, drones.registerDrone);
+app.get('/getRegisteredDrones', verifyToken, drones.getRegisteredDrones);
 
 https.createServer(options, app)
     .listen(PORT, function(){

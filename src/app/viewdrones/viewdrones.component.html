@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="viewDronesContainer">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Drone User First Name</th>
+                    <th scope="col">Drone User Last Name</th>
+                    <th scope="col">Drone Alias</th>
+                    <th scope="col">Drone FAA#</th>
+                    <th scope="col">Tag License #</th>
+                    <th scope="col">License State</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="registeredDrones">
+                <tr *ngFor="let drone of registeredDrones; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{drone.droneUserFirstName}}</td>
+                    <td>{{drone.droneUserLastName}}</td>
+                    <td>{{drone.droneAlias}}</td>
+                    <td>{{drone.droneFAANumber}}</td>
+                    <td>{{drone.tagLicense}}</td>
+                    <td>{{drone.licenseState}}</td>
+                    <td><button type="button" class="btn btn-success trackDroneButton" routerLink="">Track Drone</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br>
+    <button type="button" class="btn btn-info trackDronesButton" routerLink="">Track Drones</button>
+</div>

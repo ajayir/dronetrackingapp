@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signupscreen.component.scss']
 })
 export class SignupscreenComponent implements OnInit {
-  public userModel = new User(null, null);
+  public userModel = new User(null, null, null, null);
   public isSignUpSuccesful = false;
 
   constructor(private apiService: ApiserviceService, private router: Router) { }
@@ -25,7 +25,8 @@ export class SignupscreenComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          if (data.success) {
+          if (data) {
+            document.cookie = "token=" + data.token + "; expires=" + new Date(2020, 6, 15).toUTCString();
             me.isSignUpSuccesful = true;
           }
         },
